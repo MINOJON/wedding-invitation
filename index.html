@@ -23,57 +23,57 @@
   --toggle-off: #ddd6ce;
   --nav-h: 54px;
   --panel-w: 420px;
+  --mobile-bar: 56px;
 }
 
-html, body { height: 100%; overflow: hidden; }
-
+html, body { height: 100%; }
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background: var(--cream);
   color: var(--text-primary);
   font-size: 14px;
+  overflow: hidden;
 }
 
-/* NAV */
+/* ───── NAV ───── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
   background: #fff; border-bottom: 0.5px solid var(--border);
-  display: flex; align-items: center; padding: 0 24px; gap: 0; z-index: 200;
+  display: flex; align-items: center; padding: 0 20px; gap: 0; z-index: 300;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px; font-style: italic; color: var(--text-primary);
-  letter-spacing: 0.02em; margin-right: 28px; flex-shrink: 0;
+  letter-spacing: 0.02em; margin-right: 24px; flex-shrink: 0;
 }
-.nav-links { display: flex; align-items: center; gap: 0; }
+.nav-links { display: flex; align-items: center; }
 .nav-link {
   font-size: 13px; color: var(--text-secondary); cursor: pointer;
-  padding: 0 14px; height: var(--nav-h); display: flex; align-items: center;
+  padding: 0 12px; height: var(--nav-h); display: flex; align-items: center;
   border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
 .nav-link:hover { color: var(--text-primary); }
 .nav-link.active { color: var(--text-primary); border-bottom-color: var(--accent-gold); }
-.nav-divider { width: 0.5px; height: 16px; background: var(--border); margin: 0 8px; }
-.nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-.nav-fav { font-size: 13px; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 5px; }
-.nav-fav:hover { color: #c0607a; }
+.nav-divider { width: 0.5px; height: 16px; background: var(--border); margin: 0 4px; }
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.nav-fav { font-size: 13px; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 4px; }
 .nav-fav::before { content: '♥'; color: #c0607a; }
 .nav-icon { font-size: 18px; color: var(--text-secondary); cursor: pointer; }
 .nav-cta {
   background: var(--accent-dark); color: #fff; border: none;
-  padding: 8px 18px; border-radius: 7px; font-size: 13px;
+  padding: 8px 16px; border-radius: 7px; font-size: 13px;
   font-family: 'Noto Sans KR', sans-serif; font-weight: 500;
-  cursor: pointer; letter-spacing: 0.02em; transition: opacity 0.15s;
+  cursor: pointer; transition: opacity 0.15s;
 }
 .nav-cta:hover { opacity: 0.85; }
 
-/* LAYOUT */
+/* ───── MAIN LAYOUT ───── */
 .main {
   display: flex; height: 100vh; padding-top: var(--nav-h);
 }
 
-/* PREVIEW */
+/* ───── PREVIEW AREA (PC) ───── */
 .preview-area {
   flex: 1; display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 18px; background: var(--cream);
@@ -81,38 +81,27 @@ body {
 }
 .preview-area::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 40%, rgba(200,169,110,0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 70% 70%, rgba(180,150,120,0.06) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 30% 40%, rgba(200,169,110,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
-
-.phone-wrap { position: relative; }
 .phone-frame {
-  width: 270px; height: 530px;
-  border-radius: 36px;
-  border: 7px solid #1e1a16;
-  background: #fff;
-  overflow: hidden;
+  width: 270px; height: 530px; border-radius: 36px;
+  border: 7px solid #1e1a16; background: #fff; overflow: hidden;
   position: relative;
-  box-shadow: 0 2px 0 #3a3530, 0 20px 60px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.08);
+  box-shadow: 0 2px 0 #3a3530, 0 20px 60px rgba(0,0,0,0.25);
 }
 .phone-notch {
   position: absolute; top: 0; left: 50%; transform: translateX(-50%);
   width: 80px; height: 22px; background: #1e1a16;
   border-radius: 0 0 14px 14px; z-index: 10;
 }
-.phone-inner {
-  width: 100%; height: 100%;
-  overflow-y: auto; overflow-x: hidden;
-  scroll-behavior: smooth;
-}
+.phone-inner { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; }
 .phone-inner::-webkit-scrollbar { display: none; }
 
-/* PREVIEW CARD */
+/* ───── PREVIEW CONTENT ───── */
 .preview-hero {
   width: 100%; height: 360px;
-  background: #8a7a6a;
-  position: relative; overflow: hidden;
+  background: #8a7a6a; position: relative; overflow: hidden;
   display: flex; align-items: flex-end; justify-content: center;
 }
 .preview-hero-img {
@@ -125,63 +114,53 @@ body {
   background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
 }
 .preview-lettering {
-  position: absolute;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 30px;
-  line-height: 1.15; text-align: center;
+  position: absolute; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 30px; line-height: 1.15; text-align: center;
   bottom: 36px; left: 50%; transform: translateX(-50%);
-  white-space: pre-wrap; pointer-events: none;
-  letter-spacing: 0.01em;
+  white-space: pre-wrap; pointer-events: none; letter-spacing: 0.01em;
   transition: bottom 0.2s, color 0.2s;
 }
 .preview-body { padding: 20px 16px 30px; background: #fff; text-align: center; }
 .preview-names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; color: var(--text-primary);
-  letter-spacing: 0.08em; margin-bottom: 8px;
+  font-size: 20px; color: var(--text-primary); letter-spacing: 0.08em; margin-bottom: 8px;
 }
 .preview-heart { color: var(--accent-gold); margin: 0 8px; font-size: 14px; }
 .preview-date { font-size: 12px; color: var(--text-secondary); letter-spacing: 0.03em; }
-
 .preview-section { padding: 16px; border-top: 0.5px solid var(--border-light); }
 .preview-section-title {
   font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 8px; font-weight: 400;
+  color: var(--text-muted); margin-bottom: 8px;
 }
 .preview-cal {
   display: grid; grid-template-columns: repeat(7, 1fr);
-  gap: 4px; font-size: 10px; text-align: center; color: var(--text-secondary);
+  gap: 3px; font-size: 10px; text-align: center; color: var(--text-secondary);
 }
 .preview-cal .day-name { color: var(--text-muted); font-size: 9px; margin-bottom: 2px; }
 .preview-cal .highlighted {
-  background: var(--accent-gold); color: #fff;
-  border-radius: 50%; width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto;
+  background: var(--accent-gold); color: #fff; border-radius: 50%;
+  width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto;
 }
 
-/* AUTO FOCUS */
 .auto-focus {
   display: flex; align-items: center; gap: 10px;
   font-size: 12px; color: var(--text-secondary); z-index: 1;
 }
 
-/* PANEL */
+/* ───── EDIT PANEL ───── */
 .panel {
   width: var(--panel-w); background: var(--panel-bg);
   border-left: 0.5px solid var(--border);
-  overflow-y: auto; padding-bottom: 72px;
-  flex-shrink: 0;
+  overflow-y: auto; padding-bottom: 72px; flex-shrink: 0;
 }
 .panel::-webkit-scrollbar { width: 3px; }
 .panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-/* SECTION */
+/* ───── SECTIONS ───── */
 .sec { border-bottom: 0.5px solid var(--border-light); }
 .sec-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 15px 22px; cursor: pointer; user-select: none;
-  transition: background 0.1s;
+  padding: 15px 22px; cursor: pointer; user-select: none; transition: background 0.1s;
 }
 .sec-head:hover { background: var(--warm-white); }
 .sec-head-left { display: flex; align-items: center; gap: 10px; }
@@ -190,36 +169,24 @@ body {
   font-size: 10.5px; color: #b05070; background: #fdf0f3;
   padding: 2px 9px; border-radius: 20px; border: 0.5px solid #f0c8d0;
 }
-.sec-chevron {
-  font-size: 11px; color: var(--text-muted);
-  transition: transform 0.22s ease;
-}
+.sec-chevron { font-size: 11px; color: var(--text-muted); transition: transform 0.22s ease; }
 .sec-head.open .sec-chevron { transform: rotate(180deg); }
-.sec-body {
-  padding: 4px 22px 18px;
-  display: none;
-}
+.sec-body { padding: 4px 22px 18px; display: none; }
 .sec-body.open { display: block; }
 
-/* FIELDS */
+/* ───── FORM ELEMENTS ───── */
 .field { margin-bottom: 15px; }
 .field:last-child { margin-bottom: 0; }
-.field-label {
-  font-size: 12px; color: var(--text-secondary); margin-bottom: 7px;
-  display: flex; align-items: center; gap: 4px;
-}
+.field-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 7px; display: flex; align-items: center; gap: 4px; }
 .req { color: #c05060; font-size: 11px; }
 .hint { font-size: 11px; color: var(--text-muted); margin-top: 5px; line-height: 1.4; }
 
 input[type=text], input[type=date], input[type=time], textarea, select {
   width: 100%; padding: 8px 12px;
-  border: 0.5px solid var(--border);
-  border-radius: 7px; font-size: 13px;
-  color: var(--text-primary); background: var(--warm-white);
-  font-family: 'Noto Sans KR', sans-serif;
-  transition: border-color 0.15s, background 0.15s;
-  outline: none;
-  -webkit-appearance: none; appearance: none;
+  border: 0.5px solid var(--border); border-radius: 7px;
+  font-size: 13px; color: var(--text-primary); background: var(--warm-white);
+  font-family: 'Noto Sans KR', sans-serif; transition: border-color 0.15s;
+  outline: none; -webkit-appearance: none; appearance: none;
 }
 input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, textarea:focus, select:focus {
   border-color: var(--accent-gold); background: #fff;
@@ -227,18 +194,15 @@ input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, textarea
 textarea { resize: vertical; min-height: 76px; line-height: 1.6; }
 select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23b0a89e'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  padding-right: 32px;
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
 }
 input[type=color] {
   width: 36px; height: 36px; border: 0.5px solid var(--border);
-  border-radius: 7px; padding: 3px; cursor: pointer;
-  background: #fff; flex-shrink: 0;
+  border-radius: 7px; padding: 3px; cursor: pointer; background: #fff; flex-shrink: 0;
 }
 input[type=range] {
   -webkit-appearance: none; appearance: none;
-  width: 100%; height: 3px; background: var(--border);
-  border-radius: 2px; outline: none; cursor: pointer;
+  width: 100%; height: 3px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer;
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; width: 16px; height: 16px;
@@ -251,26 +215,22 @@ input[type=radio] { accent-color: var(--accent-gold); }
 
 .row { display: flex; gap: 8px; align-items: center; }
 .row .field { flex: 1; margin-bottom: 0; }
-.row input[type=text] { min-width: 0; }
 .small-input { width: 56px !important; flex: none !important; }
 
 .btn-sm {
-  padding: 7px 14px; border: 0.5px solid var(--border);
-  border-radius: 7px; font-size: 12px; background: #fff;
-  cursor: pointer; color: var(--text-secondary); white-space: nowrap;
-  font-family: 'Noto Sans KR', sans-serif;
-  transition: border-color 0.15s, color 0.15s;
+  padding: 7px 14px; border: 0.5px solid var(--border); border-radius: 7px;
+  font-size: 12px; background: #fff; cursor: pointer; color: var(--text-secondary);
+  white-space: nowrap; font-family: 'Noto Sans KR', sans-serif; transition: border-color 0.15s;
 }
 .btn-sm:hover { border-color: var(--accent-gold); color: var(--text-primary); }
 
 .upload-box {
-  width: 110px; height: 110px;
-  border: 1.5px dashed var(--border);
+  width: 110px; height: 110px; border: 1.5px dashed var(--border);
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
   cursor: pointer; color: var(--text-muted); font-size: 28px;
-  background: var(--warm-white); transition: border-color 0.15s, background 0.15s;
+  background: var(--warm-white); transition: border-color 0.15s;
 }
-.upload-box:hover { border-color: var(--accent-gold); background: #fffdf9; }
+.upload-box:hover { border-color: var(--accent-gold); }
 
 .color-row { display: flex; gap: 8px; align-items: center; }
 .color-row input[type=text] { flex: 1; min-width: 0; }
@@ -286,81 +246,185 @@ input[type=radio] { accent-color: var(--accent-gold); }
 .name-row input { min-width: 0; }
 .deceased-label { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-muted); white-space: nowrap; cursor: pointer; }
 
-/* TOGGLE SECTIONS */
-.toggle-sec { border-bottom: 0.5px solid var(--border-light); }
-.toggle-sec-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 22px;
-}
-.toggle-sec-left { display: flex; align-items: center; gap: 12px; }
-.toggle-sec-label { font-size: 13.5px; color: var(--text-primary); }
-.toggle-chevron { font-size: 11px; color: var(--text-muted); }
-
-/* TOGGLE SWITCH */
+/* ───── TOGGLE SWITCH ───── */
 .toggle-switch {
   width: 38px; height: 22px; border-radius: 11px;
   background: var(--toggle-off); position: relative;
-  cursor: pointer; transition: background 0.22s;
-  flex-shrink: 0;
+  cursor: pointer; transition: background 0.22s; flex-shrink: 0;
 }
 .toggle-switch.on { background: var(--toggle-on); }
 .toggle-knob {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: #fff; position: absolute;
-  top: 2px; left: 2px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-  transition: left 0.22s;
+  width: 18px; height: 18px; border-radius: 50%; background: #fff;
+  position: absolute; top: 2px; left: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18); transition: left 0.22s;
 }
 .toggle-switch.on .toggle-knob { left: 18px; }
 
-/* SAVE BAR */
-.save-bar {
-  position: fixed; bottom: 0; right: 0;
-  width: var(--panel-w);
-  background: #fff; border-top: 0.5px solid var(--border);
-  padding: 12px 22px; z-index: 200;
+/* ───── TOGGLE SECTIONS ───── */
+.toggle-sec { border-bottom: 0.5px solid var(--border-light); }
+.toggle-sec-head {
+  display: flex; align-items: center; justify-content: space-between; padding: 14px 22px;
 }
-.save-btn {
-  width: 100%; padding: 13px;
-  background: var(--accent-dark); color: #fff; border: none;
-  border-radius: 8px; font-size: 14px; font-weight: 500;
-  font-family: 'Noto Sans KR', sans-serif;
-  letter-spacing: 0.04em; cursor: pointer;
-  transition: opacity 0.15s;
-}
-.save-btn:hover { opacity: 0.88; }
-
-/* SAVE TOAST */
-.toast {
-  position: fixed; bottom: 90px; left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: var(--accent-dark); color: #fff;
-  padding: 10px 24px; border-radius: 8px;
-  font-size: 13px; opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
-  pointer-events: none; z-index: 300;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
+.toggle-sec-left { display: flex; align-items: center; gap: 12px; }
+.toggle-sec-label { font-size: 13.5px; color: var(--text-primary); }
 .divider-label {
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-muted); padding: 10px 22px 4px;
-  border-bottom: 0.5px solid var(--border-light);
-  background: var(--warm-white);
+  border-bottom: 0.5px solid var(--border-light); background: var(--warm-white);
+}
+
+/* ───── SAVE BAR ───── */
+.save-bar {
+  position: fixed; bottom: 0; right: 0; width: var(--panel-w);
+  background: #fff; border-top: 0.5px solid var(--border); padding: 12px 22px; z-index: 200;
+}
+.save-btn {
+  width: 100%; padding: 13px; background: var(--accent-dark); color: #fff; border: none;
+  border-radius: 8px; font-size: 14px; font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif; letter-spacing: 0.04em; cursor: pointer; transition: opacity 0.15s;
+}
+.save-btn:hover { opacity: 0.88; }
+
+/* ───── TOAST ───── */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: var(--accent-dark); color: #fff; padding: 10px 24px; border-radius: 8px;
+  font-size: 13px; opacity: 0; transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none; z-index: 400;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ───── MOBILE PREVIEW OVERLAY ───── */
+.mobile-preview-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 500;
+  background: var(--cream);
+  flex-direction: column;
+}
+.mobile-preview-overlay.active { display: flex; }
+
+.mobile-preview-header {
+  height: var(--nav-h); background: #fff; border-bottom: 0.5px solid var(--border);
+  display: flex; align-items: center; padding: 0 20px; gap: 14px; flex-shrink: 0;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; color: var(--text-secondary); cursor: pointer;
+  padding: 8px 14px; border: 0.5px solid var(--border);
+  border-radius: 7px; background: #fff; transition: border-color 0.15s;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.back-btn:hover { border-color: var(--accent-gold); color: var(--text-primary); }
+.mobile-preview-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic;
+  color: var(--text-primary); letter-spacing: 0.04em;
+}
+
+.mobile-preview-body {
+  flex: 1; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center;
+  padding: 24px 16px;
+}
+.mobile-card {
+  width: 100%; max-width: 400px;
+  background: #fff; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+.mobile-card-hero {
+  width: 100%; aspect-ratio: 3/4;
+  background: #8a7a6a; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.mobile-card-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; background-color: #7a6a5a; }
+.mobile-card-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%); }
+.mobile-card-lettering {
+  position: absolute; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 38px; line-height: 1.15; text-align: center;
+  bottom: 48px; left: 50%; transform: translateX(-50%);
+  white-space: pre-wrap; pointer-events: none;
+}
+.mobile-card-body { padding: 28px 24px 32px; text-align: center; }
+.mobile-card-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; color: var(--text-primary); letter-spacing: 0.08em; margin-bottom: 10px;
+}
+.mobile-card-heart { color: var(--accent-gold); margin: 0 10px; }
+.mobile-card-date { font-size: 14px; color: var(--text-secondary); letter-spacing: 0.03em; }
+.mobile-card-section { padding: 20px 24px; border-top: 0.5px solid var(--border-light); }
+.mobile-card-section-title {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 12px;
+}
+.mobile-cal {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; font-size: 12px; text-align: center; color: var(--text-secondary);
+}
+.mobile-cal .day-name { color: var(--text-muted); font-size: 10px; margin-bottom: 4px; }
+.mobile-cal .cal-highlighted {
+  background: var(--accent-gold); color: #fff; border-radius: 50%;
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; margin: 0 auto;
+}
+
+/* ───── MOBILE BOTTOM BAR ───── */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; height: var(--mobile-bar);
+  background: #fff; border-top: 0.5px solid var(--border);
+  padding: 8px 16px; z-index: 200; gap: 10px;
+}
+.mobile-bottom-bar .save-btn-mobile {
+  flex: 1; padding: 10px; background: var(--accent-dark); color: #fff; border: none;
+  border-radius: 8px; font-size: 14px; font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif; cursor: pointer;
+}
+.mobile-bottom-bar .preview-btn {
+  flex: 1; padding: 10px; background: #fff; color: var(--text-primary);
+  border: 0.5px solid var(--border); border-radius: 8px; font-size: 14px; font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif; cursor: pointer; transition: border-color 0.15s;
+}
+.mobile-bottom-bar .preview-btn:hover { border-color: var(--accent-gold); }
+
+/* ───── RESPONSIVE ───── */
+@media (max-width: 768px) {
+  body { overflow: auto; }
+  .nav-links { display: none; }
+  .nav-fav { display: none; }
+  .nav-logo { margin-right: 0; }
+
+  .main { flex-direction: column; height: auto; min-height: 100vh; }
+  .preview-area { display: none; }
+
+  .panel {
+    width: 100%; border-left: none;
+    overflow-y: visible; padding-bottom: calc(var(--mobile-bar) + 16px);
+  }
+
+  .save-bar { display: none; }
+  .mobile-bottom-bar { display: flex; }
+
+  .sec-head { padding: 14px 16px; }
+  .sec-body { padding: 4px 16px 16px; }
+  .toggle-sec-head { padding: 14px 16px; }
+  .divider-label { padding: 10px 16px 4px; }
+}
+
+@media (min-width: 769px) {
+  body { overflow: hidden; }
+  .mobile-bottom-bar { display: none !important; }
+  .mobile-preview-overlay { display: none !important; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
-  <span class="nav-logo">민재식 청첩장</span>
+  <span class="nav-logo">Salon de Letter</span>
   <div class="nav-links">
     <span class="nav-link active">모바일 청첩장</span>
     <span class="nav-link">모바일 감사장</span>
     <span class="nav-divider"></span>
     <span class="nav-link">QR코드</span>
     <span class="nav-link">샘플보기</span>
-    <span class="nav-link">네이버스토어</span>
     <span class="nav-link">고객센터</span>
   </div>
   <div class="nav-right">
@@ -370,11 +434,12 @@ input[type=radio] { accent-color: var(--accent-gold); }
   </div>
 </nav>
 
+<!-- MAIN -->
 <div class="main">
 
-  <!-- PREVIEW -->
+  <!-- PC 미리보기 (왼쪽) -->
   <div class="preview-area">
-    <div class="phone-wrap">
+    <div style="position:relative;">
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-inner">
@@ -397,35 +462,33 @@ day</div>
             <div class="preview-section-title">예식 날짜</div>
             <div class="preview-cal" id="previewCal">
               <div class="day-name">일</div><div class="day-name">월</div><div class="day-name">화</div>
-              <div class="day-name">수</div><div class="day-name">목</div><div class="day-name">금</div>
-              <div class="day-name">토</div>
+              <div class="day-name">수</div><div class="day-name">목</div><div class="day-name">금</div><div class="day-name">토</div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="auto-focus">
-      <div class="toggle-switch on" id="autoFocusToggle" onclick="this.classList.toggle('on')">
+      <div class="toggle-switch on" onclick="this.classList.toggle('on')">
         <div class="toggle-knob"></div>
       </div>
       <span>자동 포커스 (사용하시면 제작하실때 편리합니다.)</span>
     </div>
   </div>
 
-  <!-- PANEL -->
+  <!-- 편집 패널 (오른쪽) -->
   <div class="panel">
 
-    <!-- MAIN SECTION -->
+    <!-- 메인 섹션 -->
     <div class="sec">
       <div class="sec-head open" onclick="toggleSec(this)">
         <div class="sec-head-left">
           <span class="sec-title">메인</span>
-          <span class="sec-badge">10가지 템플릿이 준비되어 있어요.</span>
+          <span class="sec-badge">10가지 템플릿</span>
         </div>
         <span class="sec-chevron">▲</span>
       </div>
       <div class="sec-body open">
-
         <div class="field">
           <div class="field-label">타입 <span class="req">*</span></div>
           <div class="row">
@@ -433,15 +496,12 @@ day</div>
             <button class="btn-sm">변경</button>
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">사진 <span class="req">*</span></div>
           <div class="upload-box" onclick="document.getElementById('photoUpload').click()">+</div>
           <input type="file" id="photoUpload" accept="image/*" onchange="handlePhoto(event)">
           <p class="hint">가로사진을 첨부하시면 화질 저하가 발생합니다.<br>세로사진으로 편집 후 첨부하시면 선명한 사진으로 적용됩니다.</p>
-          <p><label style="font-size:12px;color:var(--accent-gold);cursor:pointer;">☑ 메인 권장사이즈가 궁금해요!(클릭) <span style="color:var(--text-muted);">13가지 문구가 준비되어 있어요.</span></label></p>
         </div>
-
         <div class="field">
           <div class="field-label">레터링 문구 <span class="req">*</span></div>
           <div class="row">
@@ -449,7 +509,6 @@ day</div>
             <button class="btn-sm">변경</button>
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">레터링 색상 <span class="req">*</span></div>
           <div class="color-row">
@@ -457,7 +516,6 @@ day</div>
             <input type="color" id="letteringColorPicker" value="#fff0d0" oninput="syncColorFromPicker()">
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">레터링 위치 <span class="req">*</span></div>
           <div class="slider-row">
@@ -465,7 +523,6 @@ day</div>
             <span class="slider-val" id="letteringPosVal">30</span>
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">레터링 속도 <span class="req">*</span></div>
           <div class="slider-row">
@@ -473,12 +530,10 @@ day</div>
             <span class="slider-val" id="speedVal">3.7</span>
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">메인 텍스트 입력</div>
           <textarea placeholder="청첩장 메인에 들어갈 텍스트를 입력하세요."></textarea>
         </div>
-
         <div class="field">
           <div class="field-label">메인 텍스트 색상 <span class="req">*</span></div>
           <div class="color-row">
@@ -486,15 +541,6 @@ day</div>
             <input type="color" value="#2b2520">
           </div>
         </div>
-
-        <div class="field">
-          <div class="field-label">메인 텍스트 위치 <span class="req">*</span></div>
-          <div class="slider-row">
-            <input type="range" min="0" max="100" value="50" step="1">
-            <span class="slider-val">50</span>
-          </div>
-        </div>
-
         <div class="field">
           <div class="field-label">메인 하단 예식 정보 <span class="req">*</span></div>
           <div class="radio-group">
@@ -502,7 +548,6 @@ day</div>
             <label class="radio-label"><input type="radio" name="weddingInfo" value="hide"> 숨기기</label>
           </div>
         </div>
-
         <div class="field">
           <div class="field-label">스크롤 안내 <span class="req">*</span></div>
           <div class="radio-group">
@@ -510,20 +555,16 @@ day</div>
             <label class="radio-label"><input type="radio" name="scrollGuide" value="hide" checked> 미표시</label>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- FAMILY SECTION -->
+    <!-- 가족 정보 -->
     <div class="sec">
       <div class="sec-head open" onclick="toggleSec(this)">
-        <div class="sec-head-left">
-          <span class="sec-title">가족 정보</span>
-        </div>
+        <div class="sec-head-left"><span class="sec-title">가족 정보</span></div>
         <span class="sec-chevron">▲</span>
       </div>
       <div class="sec-body open">
-
         <div class="field">
           <div class="field-label">신랑 <span class="req">*</span></div>
           <div class="name-row">
@@ -551,7 +592,6 @@ day</div>
           <div class="field-label">신랑 관계명</div>
           <input type="text" value="아들" style="width:90px;">
         </div>
-
         <div class="field" style="margin-top:18px;">
           <div class="field-label">신부 <span class="req">*</span></div>
           <div class="name-row">
@@ -579,7 +619,6 @@ day</div>
           <div class="field-label">신부 관계명</div>
           <input type="text" value="딸" style="width:90px;">
         </div>
-
         <div class="field" style="margin-top:14px;">
           <div class="field-label">정렬</div>
           <select style="width:150px;">
@@ -588,16 +627,13 @@ day</div>
             <option>우측 정렬</option>
           </select>
         </div>
-
       </div>
     </div>
 
-    <!-- WEDDING DATE SECTION -->
+    <!-- 예식일시 -->
     <div class="sec">
       <div class="sec-head open" onclick="toggleSec(this)">
-        <div class="sec-head-left">
-          <span class="sec-title">예식일시</span>
-        </div>
+        <div class="sec-head-left"><span class="sec-title">예식일시</span></div>
         <span class="sec-chevron">▲</span>
       </div>
       <div class="sec-body open">
@@ -611,22 +647,64 @@ day</div>
         </div>
         <div class="field">
           <div class="field-label">예식장명</div>
-          <input type="text" id="venueName" placeholder="예식장 이름을 입력하세요">
+          <input type="text" placeholder="예식장 이름을 입력하세요">
         </div>
       </div>
     </div>
 
-    <!-- TOGGLE SECTIONS -->
+    <!-- 섹션 토글 -->
     <div class="divider-label">섹션 관리</div>
     <div id="toggleSections"></div>
 
   </div>
 </div>
 
+<!-- PC 저장 바 -->
 <div class="save-bar">
   <button class="save-btn" onclick="saveData()">저장</button>
 </div>
 
+<!-- 모바일 하단 바 -->
+<div class="mobile-bottom-bar">
+  <button class="preview-btn" onclick="openMobilePreview()">👁 미리보기</button>
+  <button class="save-btn-mobile" onclick="saveData()">저장</button>
+</div>
+
+<!-- 모바일 미리보기 오버레이 -->
+<div class="mobile-preview-overlay" id="mobilePreviewOverlay">
+  <div class="mobile-preview-header">
+    <button class="back-btn" onclick="closeMobilePreview()">← 돌아가기</button>
+    <span class="mobile-preview-title">미리보기</span>
+  </div>
+  <div class="mobile-preview-body">
+    <div class="mobile-card">
+      <div class="mobile-card-hero">
+        <div class="mobile-card-hero-img" id="mobileHeroImg"></div>
+        <div class="mobile-card-hero-overlay"></div>
+        <div class="mobile-card-lettering" id="mobileLettering" style="color:#fff0d0;">our
+wedding
+day</div>
+      </div>
+      <div class="mobile-card-body">
+        <div class="mobile-card-names">
+          <span id="mobileGroom">신랑</span>
+          <span class="mobile-card-heart">♥</span>
+          <span id="mobileBride">신부</span>
+        </div>
+        <div class="mobile-card-date" id="mobileDate">날짜를 입력해 주세요</div>
+      </div>
+      <div class="mobile-card-section">
+        <div class="mobile-card-section-title">예식 날짜</div>
+        <div class="mobile-cal" id="mobileCal">
+          <div class="day-name">일</div><div class="day-name">월</div><div class="day-name">화</div>
+          <div class="day-name">수</div><div class="day-name">목</div><div class="day-name">금</div><div class="day-name">토</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 토스트 -->
 <div class="toast" id="toast">저장되었습니다!</div>
 
 <script>
@@ -655,32 +733,35 @@ toggleSectionItems.forEach((item) => {
   div.innerHTML = `
     <div class="toggle-sec-head">
       <div class="toggle-sec-left">
-        <div class="toggle-switch ${item.on ? 'on' : ''}" onclick="this.classList.toggle('on'); updateCalVisibility()">
+        <div class="toggle-switch ${item.on ? 'on' : ''}" onclick="this.classList.toggle('on')">
           <div class="toggle-knob"></div>
         </div>
         <span class="toggle-sec-label">${item.label}</span>
       </div>
-      <span class="toggle-chevron">⌄</span>
+      <span style="font-size:11px;color:var(--text-muted);">⌄</span>
     </div>
   `;
   toggleContainer.appendChild(div);
 });
 
+let currentPhotoData = null;
+
 function toggleSec(header) {
   header.classList.toggle('open');
-  const body = header.nextElementSibling;
-  body.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
 }
 
 function updateLettering() {
   const text = document.getElementById('letteringText').value;
-  const el = document.getElementById('previewLettering');
-  el.innerHTML = text.replace(/ /g, '<br>').replace(/\n/g, '<br>');
+  const formatted = text.replace(/ /g, '\n');
+  document.getElementById('previewLettering').textContent = formatted;
+  document.getElementById('mobileLettering').textContent = formatted;
 }
 
 function syncColorFromText() {
   const val = document.getElementById('letteringColorText').value;
   document.getElementById('previewLettering').style.color = val;
+  document.getElementById('mobileLettering').style.color = val;
   if (/^#[0-9a-fA-F]{6}$/.test(val)) {
     document.getElementById('letteringColorPicker').value = val;
   }
@@ -690,6 +771,7 @@ function syncColorFromPicker() {
   const val = document.getElementById('letteringColorPicker').value;
   document.getElementById('letteringColorText').value = val;
   document.getElementById('previewLettering').style.color = val;
+  document.getElementById('mobileLettering').style.color = val;
 }
 
 function updateLetteringPos() {
@@ -697,6 +779,7 @@ function updateLetteringPos() {
   document.getElementById('letteringPosVal').textContent = val;
   const bottomPx = Math.round(val * 3.4);
   document.getElementById('previewLettering').style.bottom = bottomPx + 'px';
+  document.getElementById('mobileLettering').style.bottom = Math.round(val * 4.2) + 'px';
 }
 
 function updateNames() {
@@ -704,25 +787,31 @@ function updateNames() {
   const gFirst = document.getElementById('groomFirst').value;
   const bLast = document.getElementById('brideLast').value;
   const bFirst = document.getElementById('brideFirst').value;
-  document.getElementById('previewGroom').textContent = (gLast + gFirst) || '신랑';
-  document.getElementById('previewBride').textContent = (bLast + bFirst) || '신부';
+  const groom = (gLast + gFirst) || '신랑';
+  const bride = (bLast + bFirst) || '신부';
+  document.getElementById('previewGroom').textContent = groom;
+  document.getElementById('previewBride').textContent = bride;
+  document.getElementById('mobileGroom').textContent = groom;
+  document.getElementById('mobileBride').textContent = bride;
 }
 
 function updateDatePreview() {
   const dateVal = document.getElementById('weddingDate').value;
   const timeVal = document.getElementById('weddingTime').value;
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const days = ['일','월','화','수','목','금','토'];
   if (dateVal) {
     const d = new Date(dateVal + 'T00:00:00');
     const formatted = `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
-    const timeStr = timeVal ? ' ' + timeVal : '';
-    document.getElementById('previewDate').textContent = formatted + timeStr;
-    renderCalendar(d);
+    const full = formatted + (timeVal ? ' ' + timeVal : '');
+    document.getElementById('previewDate').textContent = full;
+    document.getElementById('mobileDate').textContent = full;
+    renderCalendar(d, 'previewCal', false);
+    renderCalendar(d, 'mobileCal', true);
   }
 }
 
-function renderCalendar(targetDate) {
-  const cal = document.getElementById('previewCal');
+function renderCalendar(targetDate, calId, large) {
+  const cal = document.getElementById(calId);
   const dayNames = ['일','월','화','수','목','금','토'];
   let html = dayNames.map(d => `<div class="day-name">${d}</div>`).join('');
   const year = targetDate.getFullYear();
@@ -731,9 +820,10 @@ function renderCalendar(targetDate) {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month+1, 0).getDate();
   for (let i = 0; i < firstDay; i++) html += '<div></div>';
+  const cls = large ? 'cal-highlighted' : 'highlighted';
   for (let d = 1; d <= lastDate; d++) {
     if (d === targetDay) {
-      html += `<div><div class="highlighted">${d}</div></div>`;
+      html += `<div><div class="${cls}">${d}</div></div>`;
     } else {
       html += `<div style="padding:2px 0;display:flex;align-items:center;justify-content:center;">${d}</div>`;
     }
@@ -746,14 +836,22 @@ function handlePhoto(e) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = (ev) => {
-    document.getElementById('heroImg').style.cssText =
-      `background-image:url('${ev.target.result}');background-size:cover;background-position:center;position:absolute;inset:0;`;
+    currentPhotoData = ev.target.result;
+    const style = `background-image:url('${currentPhotoData}');background-size:cover;background-position:center;position:absolute;inset:0;`;
+    document.getElementById('heroImg').style.cssText = style;
+    document.getElementById('mobileHeroImg').style.cssText = style;
   };
   reader.readAsDataURL(file);
 }
 
-function updateCalVisibility() {
-  // Can hook into calendar toggle if needed
+function openMobilePreview() {
+  document.getElementById('mobilePreviewOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobilePreview() {
+  document.getElementById('mobilePreviewOverlay').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 function saveData() {
